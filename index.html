@@ -1,18 +1,24 @@
 <!DOCTYPE html>
 <html>
-    <body>
-        <span>Total click:0</span>
-        <button id="btn">Click me</button>
+    <body> <div id="root"> </div>
     </body>
-    <script>
-        let counter = 0;
-        const button = document.getElementById("btn");
-        const span = document.querySelector("span")
-        function handleClick() {
-            counter = counter +1 ;
-            span.innerText = `Total click:${counter}`;
+    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script> <!-- react JS 설치를 위한 것-->
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script> <!--react JS 설치를 위한 것--> 
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script> <!--babel 설치를 위한 것 -->
+    <script type="text/babel"> 
+        function App() {
+            const [counter,setCountUp] = React.useState(0);
+            const onClick = () => {
+                setCountUp(counter + 1);
+            };
+            return (
+                <div>
+                  <h3>Total click: {counter}</h3>
+                  <button onClick={onClick}>Click me</button>
+                </div>
+            );
         }
-        button.addEventListener("click", handleClick)
-
+        const root = document.getElementById("root");
+        ReactDOM.render(<App />, root);
     </script>
 </html>
